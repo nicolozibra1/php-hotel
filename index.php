@@ -57,6 +57,18 @@
         $filteredHotels = $hotels;
     };
 
+    // FILTER VOTE
+    if (!empty($_GET['vote'])) {
+        $vote = $_GET['vote'];
+        $filteredHotels = [];
+        foreach($hotels as $hotel) {
+            if ($hotel['vote'] == $vote) {
+                $filteredHotels[] = $hotel;
+            }
+        }
+    } else {
+        $filteredHotels = $hotels;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -75,6 +87,14 @@
             <option value="" selected>Choose</option>
             <option value="true">free parking</option>
             <option value="false">without parking</option>
+        </select>
+        <select name="vote" id="vote">
+            <option value="" selected>Vote</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select>
         <button type="submit">Search</button>
     </form>
