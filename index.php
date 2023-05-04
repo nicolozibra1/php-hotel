@@ -53,6 +53,16 @@
     <title>PHP Hotel</title>
 </head>
 <body>
-    
+    <span> <?php var_dump($hotels) ?> </span>
+
+    <ul>
+        <?php foreach ($hotels as $hotel) { ?>
+            <li class=<?php echo $hotel['name'] ?>>
+                <?php foreach($hotel as $key => $value){ ?>
+                    <span><?php echo $key .' = '. $value .' / ' ?></span>
+                <?php } ?>
+            </li> 
+        <?php } ?>
+    </ul>
 </body>
 </html>
