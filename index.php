@@ -77,29 +77,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <title>PHP Hotel</title>
 </head>
-<body>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
-        <select name="parking" id="parking">
+
+<body class="d-flex flex-column align-items-center">
+    <img src="./img/logo.png" alt="logo">
+    <h1>PHP Hotels</h1>
+    <h4>Find the perfect hotel for you</h4>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET" class="container mb-4 d-flex justify-content-center align-items-center w-50 gap-5">
+    <div class="filter-parking d-flex align-items-center gap-2 w-25">
+        <label for="parking" class="fw-semibold">Parking</label>
+        <select name="parking" id="parking" class="w-100">
             <option value="" selected>Choose</option>
             <option value="true">free parking</option>
             <option value="false">without parking</option>
         </select>
-        <select name="vote" id="vote">
-            <option value="" selected>Vote</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+    </div>
+    <div class="filter-vote d-flex align-items-center gap-2 w-25">
+        <label for="vote" class="fw-semibold">Vote</label>
+        <select name="vote" id="vote" class="w-100">
+            <option value="" selected>Choose</option>
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
         </select>
-        <button type="submit">Search</button>
+    </div> 
+        
+        <div class="box-button">
+            <button type="submit" class="btn btn-danger">Search</button>
+        </div> 
     </form>
     
-    <div class="container">
+    <div class="container table-box">
         <table class="table">
             <thead>
                 <tr>
@@ -115,14 +131,13 @@
                     <tr>
                         <td><?php echo $hotel['name'] ?></td>
                         <td><?php echo $hotel['description'] ?></td>
-                        <td><?php echo $hotel['parking'] === true ? 'Available' : $hotel['parking'] ?></td>
-                        <td><?php echo $hotel['vote'] ?></td>
-                        <td><?php echo $hotel['distance_to_center'] ?></td>
+                        <td class="text-success fw-semibold text-decoration-underline"><?php echo $hotel['parking'] === true ? 'Available' : $hotel['parking'] ?></td>
+                        <td><?php echo $hotel['vote'] ?> <span class="star">&#9733;</span></td>
+                        <td><?php echo $hotel['distance_to_center'] . ' ' . 'km' ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-    </div>
-    
+    </div>   
 </body>
 </html>

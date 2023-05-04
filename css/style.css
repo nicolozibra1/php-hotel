@@ -1,0 +1,50 @@
+body{
+    background-image: url(../img/background-pattern.png);
+    background-size: contain;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+.table-box{
+    background-color: rgba(0, 0, 0, 0.507);
+    padding: 30px;
+}
+tbody{
+    color: white;
+}
+thead{
+    color: red;
+}
+h1{
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: white;
+    letter-spacing: 5px;
+    margin-top: -20px;
+    border: 2px solid white;
+    padding: 0 10px;
+}
+h4{
+    color: red;;
+}
+form{
+    background-color: rgba(255, 255, 255, 0.685);
+    padding: 10px 20px;
+    width: 50%;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+select{
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.699);
+    color: white;
+    border: 2px solid black;
+}
+hr{
+    height: 5px;
+    background-color: white;
+    color: white;
+    border: 1px solid white;
+}
+.star{
+    color: yellow;
+}
