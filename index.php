@@ -41,33 +41,43 @@
     ];
 
     // FILTER PARKING
-    if(!empty($_GET['parking'])) {
+    if (!empty($_GET['parking'])) {
         $parking = $_GET['parking'];
         $filteredHotels = [];
-        foreach($hotels as $hotel){
-            if($parking === "true" && $hotel['parking'] === true) {
+        foreach ($hotels as $hotel) {
+            if ($parking === "true" && $hotel['parking'] === true) {
                 $filteredHotels[] = $hotel;
-            }
+            } 
             elseif ($parking === "false" && $hotel['parking'] === false) {
                 $filteredHotels[] = $hotel;
             }
         }
-    }
+    } 
     else {
         $filteredHotels = $hotels;
-    };
+    }
 
     // FILTER VOTE
     if (!empty($_GET['vote'])) {
         $vote = $_GET['vote'];
-        $filteredHotels = [];
-        foreach($hotels as $hotel) {
-            if ($hotel['vote'] == $vote) {
-                $filteredHotels[] = $hotel;
+        if (!empty($_GET['parking'])) {
+            $filteredVote = [];
+            foreach ($filteredHotels as $hotel) {
+                if ($hotel['vote'] == $vote) {
+                    $filteredVote[] = $hotel;
+                }
             }
+            $filteredHotels = $filteredVote;
+        } 
+    else {
+            $filteredVote = [];
+            foreach ($hotels as $hotel) {
+                if ($hotel['vote'] == $vote) {
+                    $filteredVote[] = $hotel;
+                }
+            }
+            $filteredHotels = $filteredVote;
         }
-    } else {
-        $filteredHotels = $hotels;
     }
 ?>
 
