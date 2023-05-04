@@ -40,6 +40,22 @@
 
     ];
 
+     if(!empty($_GET['parking'])) {
+         $parking = $_GET['parking'];
+         $filteredHotels = [];
+         foreach($hotels as $hotel){
+             if($parking === "true" && $hotel['parking'] === true) {
+                 $filteredHotels[] = $hotel;
+             }
+             elseif ($parking === "false" && $hotel['parking'] === false) {
+                 $filteredHotels[] = $hotel;
+             }
+         }
+     }
+     else {
+          $filteredHotels = $hotels;
+     }
+     
 ?>
 
 <!DOCTYPE html>
@@ -53,10 +69,19 @@
     <title>PHP Hotel</title>
 </head>
 <body>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
+        <select name="parking" id="parking">
+            <option value="" selected>Choose</option>
+            <option value="true">free parking</option>
+            <option value="false">without parking</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
     <span> <?php var_dump($hotels) ?> </span>
 
     <ul>
-        <?php foreach ($hotels as $hotel) { ?>
+        <?php foreach ($filteredHotels as $hotel) { ?>
             <li class=<?php echo $hotel['name'] ?>>
                 <?php foreach($hotel as $key => $value){ ?>
                     <span><?php echo $key .' = '. $value .' / ' ?></span>
